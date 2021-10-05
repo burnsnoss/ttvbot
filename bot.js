@@ -68,6 +68,10 @@ let foreign_chatters = fs.readFileSync('./translate.txt').toString().split('\n')
 
 
 
+// ribbon emoji for printing quotes
+let ribbon = String.fromCodePoint(0x1F380);
+
+
 
 // Called every time a message comes in
 function onMessageHandler (target, context, msg, self) {
@@ -253,7 +257,7 @@ const translateText = async (text, targetLanguage) => {
 // QUOTE HELPERS
 // get list of all quotes 
 function getQuotes() {
-  let quotes = fs.readFileSync(puchiFile).toString().split("\n");
+  let quotes = fs.readFileSync('./quotes.txt').toString().split("\n");
   for (let i = 0; i < quotes.length; i++) {
     quotes[i] = quotes[i].replace("\r", "");
   }
@@ -266,7 +270,7 @@ function getQuoteHisto() {
   return JSON.parse(rawdata);
 }
 
-// writes the puchism histogram to the puchism counter json file
+// writes the quotes histogram to the quote counter json file
 function setQuoteHisto(histo) {
   let histoString = JSON.stringify(histo);
   fs.writeFileSync('./quoteCounter.json', histoString);
